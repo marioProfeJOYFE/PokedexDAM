@@ -15,6 +15,17 @@ class PokedexViewModel : ViewModel() {
     // pokedex es público e inmutable (StateFlow), para ser observada por la Interfaz de Usuario.
     val pokedex: StateFlow<List<Region>> = _pokedex.asStateFlow()
 
+    fun marcarFavorito(pokemon: Pokemon) {
+        val pokedexActual = _pokedex.value
+        val regionActual = pokedexActual.find { it.pokemons.contains(pokemon) }
+        val pokemonActual = regionActual?.pokemons?.find { it.id == pokemon.id }
+
+        if (pokemonActual != null) {
+            pokemonActual.favorito = !pokemonActual.favorito
+
+        }
+    }
+
     init {
         cargarPokedex()
     }
@@ -169,68 +180,68 @@ class PokedexViewModel : ViewModel() {
                     imageUrl = "https://consolaytablero.com/wp-content/uploads/2014/09/mapa-de-hoenn-pokemon-rubi-omega-y-zafiro-alfa.jpg",
                     pokemons = listOf(
                         Pokemon(
-                            id = 251,
-                            name = "Treecko",
-                            types = listOf("Grass"),
-                            imageUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/251.png",
-                            dexNumber = 251
-                        ),
-                        Pokemon(
                             id = 252,
-                            name = "Grovyle",
+                            name = "Treecko",
                             types = listOf("Grass"),
                             imageUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/252.png",
                             dexNumber = 252
                         ),
                         Pokemon(
                             id = 253,
-                            name = "Sceptile",
+                            name = "Grovyle",
                             types = listOf("Grass"),
                             imageUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/253.png",
                             dexNumber = 253
                         ),
                         Pokemon(
                             id = 254,
-                            name = "Torchic",
-                            types = listOf("Fire"),
+                            name = "Sceptile",
+                            types = listOf("Grass"),
                             imageUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/254.png",
                             dexNumber = 254
                         ),
                         Pokemon(
                             id = 255,
-                            name = "Combusken",
-                            types = listOf("Fire", "Fighting"),
+                            name = "Torchic",
+                            types = listOf("Fire"),
                             imageUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/255.png",
                             dexNumber = 255
                         ),
                         Pokemon(
                             id = 256,
-                            name = "Blaziken",
+                            name = "Combusken",
                             types = listOf("Fire", "Fighting"),
                             imageUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/256.png",
                             dexNumber = 256
                         ),
                         Pokemon(
                             id = 257,
-                            name = "Mudkip",
-                            types = listOf("Water"),
+                            name = "Blaziken",
+                            types = listOf("Fire", "Fighting"),
                             imageUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/257.png",
                             dexNumber = 257
                         ),
                         Pokemon(
                             id = 258,
-                            name = "Marshtomp",
-                            types = listOf("Water", "Ground"),
+                            name = "Mudkip",
+                            types = listOf("Water"),
                             imageUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/258.png",
                             dexNumber = 258
-
                         ),
                         Pokemon(
                             id = 259,
-                            name = "Swampert",
+                            name = "Marshtomp",
                             types = listOf("Water", "Ground"),
                             imageUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/259.png",
                             dexNumber = 259
+
+                        ),
+                        Pokemon(
+                            id = 260,
+                            name = "Swampert",
+                            types = listOf("Water", "Ground"),
+                            imageUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/260.png",
+                            dexNumber = 260
                         )
                     )
                 ),
